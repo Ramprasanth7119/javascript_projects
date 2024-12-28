@@ -7,7 +7,7 @@ const weatherIcon = document.querySelector(".weather-icon")
 
 async function weatherCheck(city) {
 
-    const response = await fetch(APIURL + city +  `$appid=${APIKEY}`);
+    const response = await fetch(`${APIKEY}&q=${city}&appid=${APIKEY}`);
 
     if(response.status == 404){
 
@@ -48,8 +48,32 @@ async function weatherCheck(city) {
     }
 }
     document.addEventListener("DOMContentLoaded", ()=>{
+
         searchButton.addEventListener("click",()=>{
-            weatherCheck(searchBox.value)
-        })
+            var city = searchBox.value.trim();
+            if(city){
+                weatherCheck(city)
+            } else{
+                alert("Enter a correct city name");
+            }
+        });
+
+        searchBox.addEventListener("keydown",(event)=>{
+
+                if(event.key == "Enter"){
+
+                    var city = searchBox.value.trim();
+
+                    if(city){
+
+                        weatherCheck(city);
+
+                    } else{
+
+                    alert("Enter a correct city name");
+                    
+                }
+            }
+        });
         
-    })
+    });
