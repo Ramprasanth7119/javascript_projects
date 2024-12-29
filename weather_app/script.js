@@ -7,7 +7,7 @@ const weatherIcon = document.querySelector(".weather-icon")
 
 async function weatherCheck(city) {
 
-    const response = await fetch(`${APIKEY}&q=${city}&appid=${APIKEY}`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=afca847a20b75acc32c8515efc24f040`);
 
     if(response.status == 404){
 
@@ -19,8 +19,10 @@ async function weatherCheck(city) {
         var data = await response.json();
 
         console.log(data);
+
+        console.log(data);
         document.querySelector(".city").innerHTML = data.name;
-        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp - 273.15) + "°C";
         document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
         document.querySelector(".wind").innerHTML = data.wind.speed + "km / h";
 
