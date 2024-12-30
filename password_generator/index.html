@@ -10,7 +10,20 @@
     
     <div class="container">
         <h1>Generate a <br><span>Random Password</span></h1>
+
+        <div class="length">
+
+        <!-- <label for="length">Length : </label> -->
+        <input type="number" name="length" placeholder="Enter the length of password" id="length"/>
+
+        </div>
+
+        <div class="error">
+            <h2 id="err">Enter a number between 6 to 18.</h2>
+        </div>
+
         <div class="inp-field">
+
             <input type="text" placeholder="password" id="password"/>
             <img src="images/copy.png" onclick="copy()"/>
         </div>

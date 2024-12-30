@@ -1,17 +1,27 @@
 const passField = document.getElementById("password");
+const passLength = document.getElementById("length");
+const error = document.getElementById("err");
 
 
-const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const lowerCase = "abcdefghijklmnopqrstuvwxyz"
+const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowerCase = "abcdefghijklmnopqrstuvwxyz";
 const numbers = "0123456789";
 const specialChars = "!@#$%^&*()<>?/";
 
-const lenght = 12;
 const allChar = upperCase + lowerCase + numbers + specialChars;
 
 function createPassword(){
 
-        let password = "";
+        let lenght = passLength.value;
+
+        if(lenght < 6 || lenght > 18){
+            passField.value = "";
+            
+            error.style.display = "block";
+            
+        } else{
+            error.style.display = "none";
+            let password = "";
 
         password += upperCase[Math.floor(Math.random() * upperCase.length)];
         password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
@@ -23,7 +33,13 @@ function createPassword(){
         }
 
         passField.value = password;
+        }   
 }
+        document.addEventListener("keydown",(event)=>{
+            if(event.key == "Enter"){
+                createPassword()
+            }
+        })
 
 function copy(){
     passField.select();
